@@ -14,7 +14,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService{
 
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
     @Override
     public List<Student> getAll() {
         return studentRepository.findAll();
