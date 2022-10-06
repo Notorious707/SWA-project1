@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: batch-service
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://localhost:3306/saproject
+    username: root
+    password: e123123A!
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+    open-in-view: true
+jwt:
+  secret: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY2NTAwMzA0MywiaWF0IjoxNjY1MDAzMDQzfQ.b8qZ0GUo06OPylEKjWEOkuBVMJLfTe5Shm1Ip0yQn70
