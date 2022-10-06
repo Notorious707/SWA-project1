@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+    platform: linux/x86_64
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      SERVER_PORT: 8080
+      SPRING_APPLICATION_NAME: "batch-service"
+      SPRING_MVC_PATHMATCH_MATCHING_STRATEGY: ant_path_matcher
+      
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
+      SPRING_JPA_OPEN_IN_VIEW: "true"
+
+      SPRING_SQL_INIT_MODE: always
+
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3307/saproject?useSSL=false&allowPublicKeyRetrieval=true"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "e123123A!"
+
+      SPRING_DATASOURCE_DRIVE_CLASS_NAME: "com.mysql.cj.jdbc.Driver"
+
+      JWT_SECRET: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY2NTAwMzA0MywiaWF0IjoxNjY1MDAzMDQzfQ.b8qZ0GUo06OPylEKjWEOkuBVMJLfTe5Shm1Ip0yQn70      
+      
+  db:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: e123123A!
+      MYSQL_DATABASE: saproject
+      MYSQL_TCP_PORT: 3307
+    volumes:
+      - ./db-data:/var/lib/mysql
+volumes:
+  db-data:
