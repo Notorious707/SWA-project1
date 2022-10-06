@@ -5,24 +5,25 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
 @NoArgsConstructor
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String first;
+    private String last;
     private Double gpa;
-    private Date dob;
+    private LocalDate dob;
 
-    public Student(String firstName, String lastName, Double gpa, Date dob) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(String first, String last, Double gpa, LocalDate dob) {
+        this.first = first;
+        this.last = last;
         this.gpa = gpa;
         this.dob = dob;
     }
