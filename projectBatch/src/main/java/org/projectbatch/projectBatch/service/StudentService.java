@@ -1,6 +1,6 @@
 package org.projectbatch.projectBatch.service;
 
-import org.projectbatch.projectBatch.model.Student;
+import org.projectbatch.projectBatch.entity.Student;
 
 import java.util.List;
 

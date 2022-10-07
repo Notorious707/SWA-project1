@@ -1,7 +1,7 @@
 package org.projectbatch.projectBatch.batch;
 
-import org.projectbatch.projectBatch.model.Student;
-import org.projectbatch.projectBatch.model.StudentDto;
+import org.projectbatch.projectBatch.entity.Student;
+import org.projectbatch.projectBatch.dto.StudentDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;

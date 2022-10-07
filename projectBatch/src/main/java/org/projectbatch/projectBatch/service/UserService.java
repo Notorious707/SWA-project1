@@ -31,8 +31,10 @@ public class UserService implements IUserService {
             throw new Exception("User with this username already exists!");
         }
         User user = new User();
+        Role role=roleRepository.findByName("ROLE_CLIENT").get();
         user.setUsername(registerRequestDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+        user.getRoles().add(role);
         userRepository.save(user);
         return userRepository.existsByUsername(user.getUsername());
     }
