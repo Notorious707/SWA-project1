@@ -9,7 +9,7 @@ You should have installed docker to use this command:
 docker-compose up --build
 ```
 
-# SWA-project1 default admin user credentials:
+# Default admin user credentials:
 
 username: webper <br />
 password: sawebper
