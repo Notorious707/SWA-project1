@@ -1,7 +1,7 @@
-# SWA-project1
+# SWA Project 1
 Once you successfully go through the authorization, you can go the url “/trigger” which starts the batch and data from the csv file will be written to the database. Then you can check the data though “/getall” url.
 
-# SWA-project1 commands to start application:
+# Command to start application:
 
 You should have installed docker to use this command:
 
