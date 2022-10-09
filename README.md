@@ -11,7 +11,7 @@ docker-compose up --build
 
 # SWA-project1 default admin user credentials:
 
-username: webper
+username: webper \n
 password: sawebper
 
 # Base url
