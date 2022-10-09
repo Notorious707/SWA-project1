@@ -23,6 +23,7 @@ password: sawebper
 - Auth
   - [Register](#Register)
   - [Login](#Login)
+  - [Assign admin role to specific user](#assign-admin)
   
 - Students
   - [Batch Job](#batch-job) 
