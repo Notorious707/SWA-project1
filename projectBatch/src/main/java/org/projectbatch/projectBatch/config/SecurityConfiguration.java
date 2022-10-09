@@ -19,31 +19,31 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private final JwtFilter jwtFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().authorizeHttpRequests
-                ((authorizationManagerRequestMatcherRegistry) -> {
-                            try {
-                                authorizationManagerRequestMatcherRegistry
-                                        .antMatchers("/auth/signin", "/auth/signup")
-                                        .permitAll()
-                                        .antMatchers("/trigger")
-                                        .hasAnyAuthority("ROLE_ADMIN")
-                                        .anyRequest()
-                                        .authenticated()
-                                        .and()
-                                        .sessionManagement()
-                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.csrf().disable().authorizeHttpRequests((authorizationManagerRequestMatcherRegistry) -> {
+            try {
+                authorizationManagerRequestMatcherRegistry
+                        .antMatchers("/auth/signin", "/auth/signup")
+                        .permitAll()
+                        .antMatchers("/trigger", "/auth/assign-admin", "/getall")
+                        .hasAnyAuthority("ROLE_ADMIN")
+                        .anyRequest()
+                        .authenticated()
+                        .and()
+                        .sessionManagement()
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 

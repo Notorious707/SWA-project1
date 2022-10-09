@@ -23,7 +23,7 @@ public class StudentController {
     @Autowired
     private Job job;
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+
     @GetMapping("/trigger")
     public void trigger() throws Exception{
         JobParameters jobParameters = new JobParametersBuilder()
@@ -31,7 +31,6 @@ public class StudentController {
         jobLauncher.run(job, jobParameters);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/getall")
     public List<Student> getAll(){
         return studentService.getAll();

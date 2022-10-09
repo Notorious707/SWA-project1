@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -24,7 +26,7 @@ public class AuthorizationController {
     private ResponseDto responseDto;
 
     @PostMapping("/signin")
-    public ResponseDto signin(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
+    public ResponseDto signin(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) throws IOException {
         try {
             String token = authenticationService.signin(loginRequestDto);
             responseDto.setCode(0);
@@ -33,8 +35,10 @@ public class AuthorizationController {
             return responseDto;
         } catch (Exception exception) {
             responseDto.setCode(-1);
+            responseDto.setData(null);
             responseDto.setMessage(exception.getMessage());
             log.error(exception.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
@@ -52,10 +56,10 @@ public class AuthorizationController {
             responseDto.setMessage(exception.getMessage());
             responseDto.setData(new RegisterResponseDto(false));
             log.error(exception.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("/assign-admin")
     public ResponseDto assignAdmin(@RequestBody AdminAssignDto adminAssignDto, HttpServletResponse response) throws Exception {
         try {
@@ -69,6 +73,7 @@ public class AuthorizationController {
             responseDto.setMessage(exception.getMessage());
             responseDto.setData(false);
             log.error(exception.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
