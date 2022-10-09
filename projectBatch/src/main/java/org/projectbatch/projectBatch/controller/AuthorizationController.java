@@ -38,7 +38,7 @@ public class AuthorizationController {
             responseDto.setData(null);
             responseDto.setMessage(exception.getMessage());
             log.error(exception.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
@@ -56,7 +56,7 @@ public class AuthorizationController {
             responseDto.setMessage(exception.getMessage());
             responseDto.setData(new RegisterResponseDto(false));
             log.error(exception.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
@@ -73,7 +73,7 @@ public class AuthorizationController {
             responseDto.setMessage(exception.getMessage());
             responseDto.setData(false);
             log.error(exception.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return responseDto;
         }
     }
