@@ -21,7 +21,6 @@ password: sawebper
 ```
 
 - Auth
-
   - [Register](#Register)
   - [Login](#Login)
   
@@ -33,7 +32,7 @@ password: sawebper
 
 # Auth
 
-## Login
+## Register
 
 ### Parameters
 
